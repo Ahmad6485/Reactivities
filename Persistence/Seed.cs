@@ -10,7 +10,12 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context)
         {
-            if (context.Activities.Any()) return;
+            if (context.Activities.Any() || context.Personels.Any()) return;
+            var Person= new List<Personel>{
+                new Personel{
+                    Id_Person=1,Name="Alex",Family="Alexis",Dob=DateTime.Now.AddYears(-10),Address="None"
+                }
+            };
             
             var activities = new List<Activity>
             {
@@ -105,7 +110,7 @@ namespace Persistence
                     Venue = "Cinema",
                 }
             };
-
+            await context.Personels.AddRangeAsync(Person);
             await context.Activities.AddRangeAsync(activities);
             await context.SaveChangesAsync();
         }

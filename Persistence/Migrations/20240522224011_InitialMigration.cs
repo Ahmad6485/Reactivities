@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,22 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Activities", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Personels",
+                columns: table => new
+                {
+                    Id_Person = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Family = table.Column<string>(type: "TEXT", nullable: true),
+                    Dob = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Address = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Personels", x => x.Id_Person);
+                });
         }
 
         /// <inheritdoc />
@@ -34,6 +50,9 @@ namespace Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Activities");
+
+            migrationBuilder.DropTable(
+                name: "Personels");
         }
     }
 }
