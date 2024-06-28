@@ -22,7 +22,7 @@ namespace Application.Activities
 
             public async Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
             {
-                try
+               /*  try
                 {
                     for (int i = 0; i < 10; i++)
                     {
@@ -36,7 +36,7 @@ namespace Application.Activities
 
                     _logger.LogInformation("Task was cancelled");
                 }
-
+ */
                 return await _content.Activities.ToListAsync();
             }
         }
